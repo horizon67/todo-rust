@@ -58,7 +58,7 @@ diesel migration run
 
 ## Testing
 ```
-Run all tests
+cargo test
 ```
 
 ## Request Examples
