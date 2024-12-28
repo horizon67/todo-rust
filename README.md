@@ -37,6 +37,48 @@ A simple Todo API implemented in Rust using Actix and Diesel.
     └── handlers_test.rs # Integration tests
 ```
 
+## Development Setup
+
+### Prerequisites
+- Rust (via rustup)
+- Clippy (Rust linter)
+
+### Setup Steps
+1. Clone the repository
+```bash
+git clone https://github.com/horizon67/todo-rust.git
+```
+
+2. Start database with Docker
+```
+docker-compose up -d
+```
+
+3. Run migrations
+```
+diesel migration run
+```
+
+4. Install Clippy
+```bash
+rustup component add clippy
+```
+
+5. Install dependencies
+```bash
+cargo build
+```
+
+## Testing
+```
+cargo test
+```
+
+### Linting
+```bash
+cargo clippy
+```
+
 ## API Endpoints
 
 | Method | Path | Description |
@@ -46,20 +88,6 @@ A simple Todo API implemented in Rust using Actix and Diesel.
 | PUT | `/tasks/{id}` | Update a specific task |
 | DELETE | `/tasks/{id}` | Delete a specific task |
 
-## Start database with Docker
-```
-docker-compose up -d
-```
-
-## Run migrations
-```
-diesel migration run
-```
-
-## Testing
-```
-cargo test
-```
 
 ## Request Examples
 ### Create a Task
