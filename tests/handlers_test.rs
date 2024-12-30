@@ -16,7 +16,9 @@ async fn setup_test_app() -> impl actix_web::dev::Service<
     Error = actix_web::Error,
 > {
     dotenv().ok();
-    let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+    // TODO: テスト用のデータベースURLを使用
+    let database_url = std::env::var("DATABASE_URL")
+        .expect("DATABASE_URL must be set");
     let manager = ConnectionManager::<PgConnection>::new(database_url);
     let pool = r2d2::Pool::builder()
         .build(manager)

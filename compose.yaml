@@ -2,24 +2,39 @@ version: '3'
 
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: todo-rust
+    working_dir: /usr/src/app
+    command: "cargo run"
     volumes:
       - .:/usr/src/app
-    tty: true
+    container_name: todo-rust
     ports:
       - "8080:8080"
     depends_on:
       - db
+    networks:
+      - app_network
+    tty: true
+  
   db:
     image: postgres:alpine
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: myapp
+      POSTGRES_DB: todo
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app_network
 
 volumes:
   postgres_data:
+
+networks:
+  app_network:
+    external: true

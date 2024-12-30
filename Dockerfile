@@ -1,6 +1,7 @@
 FROM rust:latest
 
-WORKDIR /usr/src/app
+ENV APP_ROOT=/usr/src/app
+WORKDIR $APP_ROOT
 
 RUN apt-get update && \
     apt-get install -y \

@@ -49,34 +49,39 @@ A simple Todo API implemented in Rust using Actix and Diesel.
 git clone https://github.com/horizon67/todo-rust.git
 ```
 
-2. Start database with Docker
+2. Create Docker network
+```bash
+docker network create app_network
 ```
+
+3. Start database with Docker
+```bash
 docker-compose up -d
 ```
 
-3. Run migrations
+4. Run migrations
 ```
-diesel migration run
-```
-
-4. Install Clippy
-```bash
-rustup component add clippy
+docker compose run --rm app diesel migration run
 ```
 
-5. Install dependencies
+5. Install Clippy
 ```bash
-cargo build
+docker compose run --rm app rustup component add clippy
+```
+
+6. Install dependencies
+```bash
+docker compose run --rm app cargo build
 ```
 
 ## Testing
-```
-cargo test
+```bash
+docker compose run --rm app cargo test
 ```
 
 ### Linting
 ```bash
-cargo clippy
+docker compose run --rm app cargo clippy
 ```
 
 ## API Endpoints
